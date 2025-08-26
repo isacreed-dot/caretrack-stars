@@ -1,53 +1,22 @@
 import React, { useState } from 'react';
 
+/**
+ * CareTrack STARs — condition-focused tracker with bilingual education blurbs.
+ * - Shows brief "what it is" + "why it matters" (EN/ES) under each measure.
+ * - Simple flags for overdue/out-of-range.
+ */
+
 export default function App() {
-  const [bp, setBp] = useState('');
-  const [a1c, setA1c] = useState('');
-  const [education, setEducation] = useState({});
+  // ---- Goals (editable at bottom) ----
+  const [a1cGoal, setA1cGoal] = useState(7.0);
+  const [bpGoalSys, setBpGoalSys] = useState(130);
+  const [bpGoalDia, setBpGoalDia] = useState(80);
 
-  const handleCheckbox = (measure) => {
-    setEducation({ ...education, [measure]: !education[measure] });
-  };
-
-  return (
-    <div className="app">
-      <h1>CareTrack STARs</h1>
-
-      <section>
-        <h2>Screenings / Prevention</h2>
-        <label>
-          <input type="checkbox" onChange={() => handleCheckbox('Breast Cancer Screening')} />
-          Breast Cancer Screening
-        </label>
-        <label>
-          <input type="checkbox" onChange={() => handleCheckbox('Colorectal Cancer Screening')} />
-          Colorectal Cancer Screening
-        </label>
-      </section>
-
-      <section>
-        <h2>Chronic Condition Management</h2>
-        <label>
-          Blood Pressure (mmHg):
-          <input type="text" value={bp} onChange={(e) => setBp(e.target.value)} />
-        </label>
-        <label>
-          A1C (%):
-          <input type="text" value={a1c} onChange={(e) => setA1c(e.target.value)} />
-        </label>
-      </section>
-
-      <section>
-        <h2>Education Provided</h2>
-        <label>
-          <input type="checkbox" onChange={() => handleCheckbox('Diabetes Education')} />
-          Diabetes Education
-        </label>
-        <label>
-          <input type="checkbox" onChange={() => handleCheckbox('Blood Pressure Education')} />
-          Blood Pressure Education
-        </label>
-      </section>
-    </div>
-  );
-}
+  // ---- Screenings / Prevention ----
+  const [breastDate, setBreastDate] = useState('');
+  const [crcType, setCrcType] = useState('FIT'); // FIT, FITDNA, Colonoscopy, CTColono, FlexSig
+  const [crcDate, setCrcDate] = useState('');
+  const [fluDate, setFluDate] = useState('');
+  const [fractureDate, setFractureDate] = useState('');
+  const [bmdDate, setBmdDate] = useState('');
+  const [osteoMedDate
